@@ -36,3 +36,45 @@
     transform: rotate(360deg);
   }
 }
+.navbar-styles {
+  box-shadow: rgba(0, 0, 0, 0.466) 1px 0px 10px;
+  background-color: rgba(167, 167, 167, 0.2);
+}
+.link {
+  color: white;
+  font-weight: 400;
+  font-size: medium;
+}
+.link:hover {
+  color: white;
+  font-size: larger;
+  font-weight: 500;
+}
+.row.vdivide [class*="col-"]:not(:last-child):after {
+  background: #e0e0e0;
+  width: 1px;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  min-height: 70px;
+}
+
+.signup-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 70%;
+  align-items: center;
+  background-color: white;
+  padding-top: 15px;
+  margin-top: 15px;
+
+}
+.signup-header{
+  text-align: center;
+  font-weight: bolder;
+
+
+}
