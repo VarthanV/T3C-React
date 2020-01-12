@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { homeRoute } from "../helperconstants";
 import { homeAuthRoute } from "../helperconstants";
-
+import CircleAvatar from "./CircleAvatar";
+import RenderHtml from "./RenderHtml";
+import {Link} from 'react-router-dom';
 export default function Posts() {
-  const route =
-    localStorage.getItem("token") !== null ? homeAuthRoute : homeRoute;
   const token = localStorage.getItem("token");
-  console.log(token);
+  const route = token !== null ? homeAuthRoute : homeRoute;
+
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     fetch(route, {
@@ -15,7 +17,35 @@ export default function Posts() {
       }
     })
       .then(res => res.json())
-      .then(data => console.log(data));
-  }, [route, token]);
-  return <div></div>;
+      .then(data => {
+        setPosts(data);
+        console.log(data);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return (
+    <div className="container card  mt-5 ">
+      {posts.map(post => (
+        <div key={post.pk} className="post">
+          <div className="row  pb-3">
+            <CircleAvatar avatarURL={post.profile_img}></CircleAvatar>
+            <p className="text-justify pb-2 author"> {post.author} </p>{" "}
+            <p className="text-justify pl-2">
+              {" "}
+              posted on {new Date(post.date_posted).toDateString()}{" "}
+            </p>
+          </div>
+          <div id="post-content">
+            <p className="post-title pl-15"> {post.title}</p> <br></br>
+            <RenderHtml gist={post.gist}></RenderHtml>  
+            <div className="row">
+            <Link className ="text-muted" to="/"> Read more </Link>
+              </div>
+          </div>
+
+          <hr />
+        </div>
+      ))}
+    </div>
+  );
 }

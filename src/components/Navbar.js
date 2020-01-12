@@ -24,6 +24,7 @@ export default function Navbar() {
           <li className="nav-item">
             <Link
               className="nav-link"
+              to="/home"
               style={{ fontSize: "20px", fontWeight: "600", color: "white" }}
             >
               Tier 3 Coders
@@ -56,6 +57,7 @@ export default function Navbar() {
                   className="mt-0"
                   height="40"
                   width="40"
+                  alt="Avatar Img"
                 />
               </div>
               <li className="nav-item">
